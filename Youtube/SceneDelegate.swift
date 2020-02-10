@@ -29,6 +29,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let layout = UICollectionViewFlowLayout()
         self.window!.rootViewController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
         
+        
+        UINavigationBar.appearance().barTintColor = UIColor.rgbColor(red: 230, green: 32, blue: 31)
+        
+        //custom appearance for status bar
+        let statusBarBackGroundView = UIView()
+        statusBarBackGroundView.backgroundColor = UIColor.green
+        
+        window?.addSubview(statusBarBackGroundView)
+//        window?.addConstraintswithFormat(format: "H:|[v0]|", views: statusBarBackGroundView)
+//        window?.addConstraintswithFormat(format: "V:|[v0(20)]", views: statusBarBackGroundView)
+        
         // Make this scene's window be visible.
         self.window!.makeKeyAndVisible()
         

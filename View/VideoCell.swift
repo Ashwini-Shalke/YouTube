@@ -1,41 +1,12 @@
 //
-//  ViewController.swift
+//  ViewCell.swift
 //  Youtube
 //
-//  Created by Ashwini shalke on 06/02/20.
+//  Created by Ashwini shalke on 10/02/20.
 //  Copyright © 2020 Ashwini Shalke. All rights reserved.
 //
 
 import UIKit
-
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = "Home"
-        collectionView.backgroundColor = UIColor.white
-        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-}
-
-
 class VideoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,14 +19,17 @@ class VideoCell: UICollectionViewCell {
     
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
+        imageView.image = UIImage(named: "selena=gomez-backgroundImage")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     let profileImageView: UIImageView = {
         let profile = UIImageView()
-        profile.backgroundColor = UIColor.orange
+        profile.image = UIImage(named: "selena-gomez-profile")
+        profile.contentMode = .scaleAspectFill
         profile.translatesAutoresizingMaskIntoConstraints = false
         profile.layer.cornerRadius = 22
         profile.clipsToBounds = true
@@ -64,21 +38,23 @@ class VideoCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = UIColor.green
+        label.text = "Selena-Gomez - Blank Space"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let titleDescription: UILabel = {
-           let label = UILabel()
-        label.backgroundColor = UIColor.red
-           label.translatesAutoresizingMaskIntoConstraints = false
-           return label
+    let titleDescription: UITextView = {
+        let label = UITextView()
+        label.text = "SelenaGomez - 1,234,678 views -2 years ago"
+        label.textColor = UIColor.gray
+        label.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
        }()
     
     let separator: UIView = {
        let line = UIView()
-       line.backgroundColor = UIColor.gray
+       line.backgroundColor = UIColor.init(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
        line.translatesAutoresizingMaskIntoConstraints = false
        return line
     }()
@@ -107,17 +83,6 @@ class VideoCell: UICollectionViewCell {
         addConstraint(NSLayoutConstraint(item: titleDescription, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right , multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: titleDescription, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height , multiplier: 0, constant: 20))
 
-    }
-}
-
-extension UIView {
-    func addConstraintswithFormat(format: String, views: UIView...){
-        var viewDict = [String: UIView]()
-        for (index, item) in views.enumerated(){
-            let key = "v\(index)"
-            viewDict[key] = item
-        }
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat:format, options:[], metrics: nil, views: viewDict))
     }
 }
 
