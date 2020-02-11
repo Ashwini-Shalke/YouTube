@@ -18,10 +18,13 @@ extension UIView {
     func addConstraintswithFormat(format: String, views: UIView...){
         var viewDict = [String: UIView]()
         for (index, item) in views.enumerated(){
+            item.translatesAutoresizingMaskIntoConstraints = false
             let key = "v\(index)"
             viewDict[key] = item
+            
         }
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat:format, options:[], metrics: nil, views: viewDict))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: [], metrics: nil, views: viewDict))
+        //addConstraints(NSLayoutConstraint.constraints(withVisualFormat:format, options:[], metrics: nil, views: viewDict))
     }
 }
 

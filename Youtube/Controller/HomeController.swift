@@ -9,11 +9,22 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    
+    let menuBar: MenuBar = {
+        let mb = MenuBar()
+        return mb
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.title = "Home"
+        //        navigationItem.title = "Home"
         navigationController?.navigationBar.isTranslucent = false
+        
+        //get rid of  border line of navigation bar
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        
         let barLabel = UILabel()
         barLabel.text = "Home"
         barLabel.font = UIFont.systemFont(ofSize: 20)
@@ -22,16 +33,24 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         barLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height)
         navigationItem.titleView = barLabel
         
+        collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
         collectionView.backgroundColor = UIColor.white
         collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
+         
+        view.addSubview(menuBar)
+        view.addConstraintswithFormat(format: "H:|[v0]|", views: menuBar)
+        view.addConstraintswithFormat(format: "V:|[v0(50)]", views: menuBar)
     }
     
+    
+
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
         return cell
