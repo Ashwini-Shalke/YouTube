@@ -49,11 +49,28 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         view.addSubview(menuBar)
         view.addConstraintswithFormat(format: "H:|[v0]|", views: menuBar)
         view.addConstraintswithFormat(format: "V:|[v0(50)]", views: menuBar)
+        
+        setupNavBar()
+    }
+    
+    func setupNavBar(){
+        let searchImage = UIImage(named: "searchIcon")?.withRenderingMode(.alwaysOriginal)
+        let searchButton = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
+     
+    
+        let moreButton = UIBarButtonItem(image: UIImage(named: "menuIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMenu))
+        navigationItem.rightBarButtonItems = [moreButton,searchButton]
     }
     
     
-
+    @objc func handleSearch(){
+        
+    }
     
+    @objc func handleMenu(){
+        
+    }
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return video.count
     }
