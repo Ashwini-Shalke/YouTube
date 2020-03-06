@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3322E7B02411F02900D14C4D /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3322E7AF2411F02800D14C4D /* Video.swift */; };
 		33587EC423F14CE700E6D1E9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33587EC323F14CE700E6D1E9 /* Extension.swift */; };
 		33587EC723F15E5700E6D1E9 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33587EC623F15E5700E6D1E9 /* VideoCell.swift */; };
 		33587ECA23F1821600E6D1E9 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33587EC923F1821600E6D1E9 /* MenuBar.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3322E7AF2411F02800D14C4D /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		33587EC323F14CE700E6D1E9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = ../../YouTube/Helper/Extension.swift; sourceTree = "<group>"; };
 		33587EC623F15E5700E6D1E9 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoCell.swift; path = ../../YouTube/View/VideoCell.swift; sourceTree = "<group>"; };
 		33587EC923F1821600E6D1E9 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3322E7AE2411EFE900D14C4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3322E7AF2411F02800D14C4D /* Video.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		33587EC223F14CD200E6D1E9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +97,7 @@
 		335B994923EC5DEA00C5B528 /* Youtube */ = {
 			isa = PBXGroup;
 			children = (
+				3322E7AE2411EFE900D14C4D /* Model */,
 				33587EC523F15E2500E6D1E9 /* View */,
 				33587EC823F15E8200E6D1E9 /* Controller */,
 				33587EC223F14CD200E6D1E9 /* Helper */,
@@ -176,6 +187,7 @@
 				33587ECA23F1821600E6D1E9 /* MenuBar.swift in Sources */,
 				335B994D23EC5DEA00C5B528 /* SceneDelegate.swift in Sources */,
 				33587EC423F14CE700E6D1E9 /* Extension.swift in Sources */,
+				3322E7B02411F02900D14C4D /* Video.swift in Sources */,
 				33587EC723F15E5700E6D1E9 /* VideoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

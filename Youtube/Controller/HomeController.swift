@@ -15,6 +15,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return mb
     }()
     
+    let video : [Video] = {
+        let selenaVideo = Video()
+        selenaVideo.thumbNailImage = "selena=gomez-backgroundImage"
+        selenaVideo.title = "selena=gomez"
+        
+        return [selenaVideo]
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +55,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return video.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
+        cell.video = video[indexPath.item]
+        
         return cell
     }
     
