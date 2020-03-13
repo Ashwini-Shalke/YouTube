@@ -15,16 +15,26 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return mb
     }()
     
-    let video : [Video] = {
-        let selenaVideo = Video()
-        selenaVideo.thumbNailImage = "selena=gomez-backgroundImage"
-        selenaVideo.title = "selena=gomez"
-        
-        return [selenaVideo]
-    }()
+    var videosArray: [Video]?
+
+    func getVideoData(){
+        let urlString = "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json"
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            guard let data = data else {return}
+            do {
+                self.videosArray = try JSONDecoder().decode([Video].self,  from: data)
+                DispatchQueue.main.async { self.collectionView.reloadData() }
+            } catch let jsonErr {
+                print("Unable to fetch Data",jsonErr)
+            }
+        }.resume()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getVideoData()
         //        navigationItem.title = "Home"
         navigationController?.navigationBar.isTranslucent = false
         
@@ -72,19 +82,18 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return video.count
+        return videosArray?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
-        cell.video = video[indexPath.item]
-        
+        cell.video = videosArray?[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = (view.frame.width - 16 - 16) * 9/16
-        return CGSize(width: view.frame.width, height: height + 16 + 68)
+        return CGSize(width: view.frame.width, height: height + 16 + 88)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
