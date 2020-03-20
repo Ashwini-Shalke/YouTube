@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3322E7B02411F02900D14C4D /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3322E7AF2411F02800D14C4D /* Video.swift */; };
+		3333CD652424F21A00E6EF3B /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3333CD642424F21A00E6EF3B /* SettingController.swift */; };
 		33587EC423F14CE700E6D1E9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33587EC323F14CE700E6D1E9 /* Extension.swift */; };
 		33587EC723F15E5700E6D1E9 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33587EC623F15E5700E6D1E9 /* VideoCell.swift */; };
 		33587ECA23F1821600E6D1E9 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33587EC923F1821600E6D1E9 /* MenuBar.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		3322E7AF2411F02800D14C4D /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		3333CD642424F21A00E6EF3B /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		33587EC323F14CE700E6D1E9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = ../../YouTube/Helper/Extension.swift; sourceTree = "<group>"; };
 		33587EC623F15E5700E6D1E9 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoCell.swift; path = ../../YouTube/View/VideoCell.swift; sourceTree = "<group>"; };
 		33587EC923F1821600E6D1E9 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				335B994E23EC5DEA00C5B528 /* HomeController.swift */,
+				3333CD642424F21A00E6EF3B /* SettingController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				335B994B23EC5DEA00C5B528 /* AppDelegate.swift in Sources */,
 				33587ECA23F1821600E6D1E9 /* MenuBar.swift in Sources */,
 				335B994D23EC5DEA00C5B528 /* SceneDelegate.swift in Sources */,
+				3333CD652424F21A00E6EF3B /* SettingController.swift in Sources */,
 				33587EC423F14CE700E6D1E9 /* Extension.swift in Sources */,
 				3322E7B02411F02900D14C4D /* Video.swift in Sources */,
 				33587EC723F15E5700E6D1E9 /* VideoCell.swift in Sources */,
