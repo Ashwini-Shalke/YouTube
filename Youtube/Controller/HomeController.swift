@@ -75,15 +75,26 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     @objc func handleSearch(){
         
-        
     }
     
-    let setting = SettingLauncher()
+    lazy var settingLauncher:SettingLauncher = {
+        let launcher = SettingLauncher()
+        launcher.homeController = self
+        return launcher
+    }()
     
     @objc func handleMenu(){
-        setting.handleSetting()
+        settingLauncher.handleSetting()
     }
     
+    func showControllerForSetting(setting : Setting){
+        let dummyController = UIViewController()
+        dummyController.view.backgroundColor = UIColor.white
+        dummyController.navigationItem.title = setting.labelName
+        navigationController?.navigationBar.tintColor = UIColor.white
+        //UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor.rawValue: UIColor.orange]
+        navigationController?.pushViewController(dummyController, animated: true)
+    }
     
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

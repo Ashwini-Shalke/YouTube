@@ -13,6 +13,7 @@ class SettingLauncher:NSObject,UICollectionViewDelegate,UICollectionViewDataSour
     let blackView = UIView()
     let cellID = "cellID"
     let cellHeight: CGFloat = 50
+    var homeController:HomeController?
     
     var settings: [Setting] = {
         return [Setting(labelName: "Settings", imageName: "settings"),Setting(labelName: "Terms and privacy policy", imageName: "privacy"),Setting(labelName: "Send Feedback", imageName: "feedback"), Setting(labelName: "Help", imageName: "help"),Setting(labelName: "Switch Account", imageName: "switch_account"),Setting(labelName: "Cancel", imageName: "cancel")]
@@ -63,13 +64,22 @@ class SettingLauncher:NSObject,UICollectionViewDelegate,UICollectionViewDataSour
         }
     }
     
-    @objc func handleDismiss(){
-        UIView.animate(withDuration: 0.5) {
+    @objc func handleDismiss(setting: Setting?){
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0
-            
-            if let window = UIApplication.shared.keyWindow{
+            if let window = UIApplication.shared.keyWindow {
                 self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
             }
+        }) { ( result ) in
+            guard let settingsToUse = setting else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if settingsToUse.labelName != "Cancel" && settingsToUse.labelName != " " {
+                    self.homeController?.showControllerForSetting(setting: settingsToUse)
+                }
+            }            
         }
     }
     
@@ -90,4 +100,13 @@ class SettingLauncher:NSObject,UICollectionViewDelegate,UICollectionViewDataSour
         cell.setting = settings[indexPath.item]
         return cell
     }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+            let setting = self.settings[indexPath.item]
+            handleDismiss(setting: setting)
+    }
 }
+
