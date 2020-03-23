@@ -8,6 +8,17 @@
 
 import UIKit
 
+class Setting: NSObject {
+    let labelName: SettingName
+    let imageName: String
+    
+    init(labelName: SettingName, imageName: String){
+        self.labelName = labelName
+        self.imageName = imageName
+    }
+}
+
+
 class SettingLauncher:NSObject,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let blackView = UIView()
@@ -15,8 +26,16 @@ class SettingLauncher:NSObject,UICollectionViewDelegate,UICollectionViewDataSour
     let cellHeight: CGFloat = 50
     var homeController:HomeController?
     
+    
+    
     var settings: [Setting] = {
-        return [Setting(labelName: "Settings", imageName: "settings"),Setting(labelName: "Terms and privacy policy", imageName: "privacy"),Setting(labelName: "Send Feedback", imageName: "feedback"), Setting(labelName: "Help", imageName: "help"),Setting(labelName: "Switch Account", imageName: "switch_account"),Setting(labelName: "Cancel", imageName: "cancel")]
+        let setting = Setting(labelName: .Setting , imageName: "settings")
+        let termSetting = Setting(labelName: .Term , imageName: "privacy")
+        let feedbackSetting = Setting(labelName: .Feedback, imageName: "feedback")
+        let helpSetting = Setting(labelName: .Help, imageName: "help")
+        let switchSetting = Setting(labelName: .Switch, imageName: "switch_account")
+        let cancelSetting = Setting(labelName: .Cancel, imageName: "cancel")
+        return [setting,termSetting,feedbackSetting, helpSetting, switchSetting,cancelSetting]
     }()
     
     
@@ -57,6 +76,7 @@ class SettingLauncher:NSObject,UICollectionViewDelegate,UICollectionViewDataSour
             let y = window.frame.height - menuHeight
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: safeAreaHeight)
             blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
+            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.blackView.alpha = 1
                 self.collectionView.frame = CGRect(x: 0, y: y, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
@@ -68,19 +88,9 @@ class SettingLauncher:NSObject,UICollectionViewDelegate,UICollectionViewDataSour
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0
             if let window = UIApplication.shared.keyWindow {
-                self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
-            }
-        }) { ( result ) in
-            guard let settingsToUse = setting else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if settingsToUse.labelName != "Cancel" && settingsToUse.labelName != " " {
-                    self.homeController?.showControllerForSetting(setting: settingsToUse)
-                }
-            }            
-        }
+                self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height) }
+        }, completion: nil
+        )
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -104,9 +114,15 @@ class SettingLauncher:NSObject,UICollectionViewDelegate,UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0
+            if let window = UIApplication.shared.keyWindow {
+                self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+            }
+        }) { ( result ) in
             let setting = self.settings[indexPath.item]
-            handleDismiss(setting: setting)
+            self.homeController?.showControllerForSetting(setting: setting)
+        }
     }
 }
 

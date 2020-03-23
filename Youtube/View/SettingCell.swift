@@ -8,16 +8,6 @@
 
 import UIKit
 
-class Setting:NSObject {
-    let labelName: String
-    let imageName: String
-    
-    init(labelName: String, imageName: String){
-        self.imageName = imageName
-        self.labelName = labelName
-    }
-}
-
 class SettingCell: BaseCell {
     
     override var isHighlighted: Bool {
@@ -30,7 +20,7 @@ class SettingCell: BaseCell {
     
     var setting: Setting? {
         didSet {
-            nameLabel.text = setting?.imageName
+            nameLabel.text = setting?.labelName.rawValue
             if let image = setting?.imageName {
                 imageIcon.image = UIImage(named: image)?.withRenderingMode(.alwaysTemplate)
                 imageIcon.tintColor = UIColor.darkGray
