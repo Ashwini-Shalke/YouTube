@@ -15,7 +15,6 @@ class BaseCell : UICollectionViewCell {
     }
     
     func setup(){}
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -88,6 +87,7 @@ class VideoCell: BaseCell {
     let titleDescription: UITextView = {
         let label = UITextView()
         label.text = "SelenaGomez • 1,234,678 views • 2 years ago"
+        label.isEditable = false
         label.textColor = UIColor.gray
         label.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         label.translatesAutoresizingMaskIntoConstraints = false

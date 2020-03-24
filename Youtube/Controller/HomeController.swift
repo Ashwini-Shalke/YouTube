@@ -56,9 +56,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.backgroundColor = UIColor.white
         collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
          
+        
+        let redView = UIView()
+        redView.backgroundColor = UIColor.rgbColor(red: 230, green: 32, blue: 31)
+        view.addSubview(redView)
+        view.addConstraintswithFormat(format: "H:|[v0]|", views: redView)
+        view.addConstraintswithFormat(format: "V:[v0(50)]", views: redView)
+        
         view.addSubview(menuBar)
+        navigationController?.hidesBarsOnSwipe = true
         view.addConstraintswithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintswithFormat(format: "V:|[v0(50)]", views: menuBar)
+        view.addConstraintswithFormat(format: "V:[v0(50)]", views: menuBar)
+                
+        menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         
         setupNavBar()
     }
