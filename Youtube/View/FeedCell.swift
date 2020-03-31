@@ -11,6 +11,8 @@ import UIKit
 class FeedCell : BaseCell, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     var videosArray: [Video]?
     let cellId = "CellId"
+    let trendingCellId = "TrendingCellId"
+    
     lazy var collectionView: UICollectionView = {
           let layout = UICollectionViewFlowLayout()
           let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -20,26 +22,20 @@ class FeedCell : BaseCell, UICollectionViewDelegate, UICollectionViewDataSource,
           return cv
       }()
       
-    func getVideoData(){
-           let urlString = "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json"
-           guard let url = URL(string: urlString) else { return }
-           URLSession.shared.dataTask(with: url) { (data, response, err) in
-               guard let data = data else {return}
-               do {
-                   self.videosArray = try JSONDecoder().decode([Video].self,  from: data)
-                   DispatchQueue.main.async { self.collectionView.reloadData() }
-               } catch let jsonErr {
-                   print("Unable to fetch Data",jsonErr)
-               }
-           }.resume()
-       }
+    func fetchVideoData(){
+        ApiService.sharedInstance.fetchVideos { (videos) in
+            self.videosArray = videos
+            self.collectionView.reloadData()
+        }
+        
+    }
     
     override func setup() {
         addSubview(collectionView)
         addConstraintswithFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintswithFormat(format: "V:|[v0]|", views: collectionView)
         collectionView.register(VideoCell.self, forCellWithReuseIdentifier: cellId)
-        getVideoData()
+        fetchVideoData()
     }
     
   

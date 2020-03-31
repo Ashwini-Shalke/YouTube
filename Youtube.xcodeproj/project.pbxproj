@@ -12,6 +12,9 @@
 		3333CD6724250F9F00E6EF3B /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3333CD6624250F9F00E6EF3B /* SettingCell.swift */; };
 		3333CD6924290B7C00E6EF3B /* SettingName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3333CD6824290B7C00E6EF3B /* SettingName.swift */; };
 		3333CD6B2430EE6C00E6EF3B /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3333CD6A2430EE6C00E6EF3B /* FeedCell.swift */; };
+		3333CD6E24334EA900E6EF3B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3333CD6D24334EA900E6EF3B /* ApiService.swift */; };
+		3333CD702433538700E6EF3B /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3333CD6F2433538700E6EF3B /* TrendingCell.swift */; };
+		3333CD72243362CB00E6EF3B /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3333CD71243362CB00E6EF3B /* SubscriptionCell.swift */; };
 		33587EC423F14CE700E6D1E9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33587EC323F14CE700E6D1E9 /* Extension.swift */; };
 		33587EC723F15E5700E6D1E9 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33587EC623F15E5700E6D1E9 /* VideoCell.swift */; };
 		33587ECA23F1821600E6D1E9 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33587EC923F1821600E6D1E9 /* MenuBar.swift */; };
@@ -29,6 +32,9 @@
 		3333CD6624250F9F00E6EF3B /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		3333CD6824290B7C00E6EF3B /* SettingName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingName.swift; sourceTree = "<group>"; };
 		3333CD6A2430EE6C00E6EF3B /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		3333CD6D24334EA900E6EF3B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		3333CD6F2433538700E6EF3B /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
+		3333CD71243362CB00E6EF3B /* SubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
 		33587EC323F14CE700E6D1E9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = ../../YouTube/Helper/Extension.swift; sourceTree = "<group>"; };
 		33587EC623F15E5700E6D1E9 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoCell.swift; path = ../../YouTube/View/VideoCell.swift; sourceTree = "<group>"; };
 		33587EC923F1821600E6D1E9 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -62,6 +68,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3333CD6C24334E7500E6EF3B /* ApiService */ = {
+			isa = PBXGroup;
+			children = (
+				3333CD6D24334EA900E6EF3B /* ApiService.swift */,
+			);
+			path = ApiService;
+			sourceTree = "<group>";
+		};
 		33587EC223F14CD200E6D1E9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +92,8 @@
 				3333CD642424F21A00E6EF3B /* SettingLauncher.swift */,
 				3333CD6624250F9F00E6EF3B /* SettingCell.swift */,
 				3333CD6A2430EE6C00E6EF3B /* FeedCell.swift */,
+				3333CD6F2433538700E6EF3B /* TrendingCell.swift */,
+				3333CD71243362CB00E6EF3B /* SubscriptionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -109,6 +125,7 @@
 		335B994923EC5DEA00C5B528 /* Youtube */ = {
 			isa = PBXGroup;
 			children = (
+				3333CD6C24334E7500E6EF3B /* ApiService */,
 				3322E7AE2411EFE900D14C4D /* Model */,
 				33587EC523F15E2500E6D1E9 /* View */,
 				33587EC823F15E8200E6D1E9 /* Controller */,
@@ -196,13 +213,16 @@
 			files = (
 				335B994F23EC5DEA00C5B528 /* HomeController.swift in Sources */,
 				335B994B23EC5DEA00C5B528 /* AppDelegate.swift in Sources */,
+				3333CD6E24334EA900E6EF3B /* ApiService.swift in Sources */,
 				33587ECA23F1821600E6D1E9 /* MenuBar.swift in Sources */,
+				3333CD702433538700E6EF3B /* TrendingCell.swift in Sources */,
 				335B994D23EC5DEA00C5B528 /* SceneDelegate.swift in Sources */,
 				3333CD6B2430EE6C00E6EF3B /* FeedCell.swift in Sources */,
 				3333CD652424F21A00E6EF3B /* SettingLauncher.swift in Sources */,
 				33587EC423F14CE700E6D1E9 /* Extension.swift in Sources */,
 				3322E7B02411F02900D14C4D /* Video.swift in Sources */,
 				33587EC723F15E5700E6D1E9 /* VideoCell.swift in Sources */,
+				3333CD72243362CB00E6EF3B /* SubscriptionCell.swift in Sources */,
 				3333CD6724250F9F00E6EF3B /* SettingCell.swift in Sources */,
 				3333CD6924290B7C00E6EF3B /* SettingName.swift in Sources */,
 			);

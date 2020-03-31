@@ -9,7 +9,11 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
     let cellId = "CellID"
+    let trendingCellId = "TrendingCellID"
+    let subscriptionCellId = "SubscriptionCellID"
+    
     var videosArray: [Video]?
     let titleNames = ["Home", "Trending","Subscription","Account"]
     
@@ -19,26 +23,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return mb
     }()
     
-    func getVideoData(){
-        let urlString = "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json"
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            guard let data = data else {return}
-            do {
-                self.videosArray = try JSONDecoder().decode([Video].self,  from: data)
-                DispatchQueue.main.async { self.collectionView.reloadData() }
-            } catch let jsonErr {
-                print("Unable to fetch Data",jsonErr)
-            }
-        }.resume()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getVideoData()
-        //        navigationItem.title = "Home"
         navigationController?.navigationBar.isTranslucent = false
-        //get rid of  border line of navigation bar
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         
@@ -69,12 +57,17 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             flowLayout.minimumLineSpacing = 0
         }
         collectionView?.backgroundColor = UIColor.white
-//      collectionView?.registerClass(VideoCell.self, forCellWithReuseIdentifier: "cellId")
+        
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
+        collectionView.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellId)
+        
         collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView?.isPagingEnabled = true
     }
+    
+    
     
     func setupNavTitle(index: Int){
         if let titleLables = navigationItem.titleView as? UILabel {
@@ -130,7 +123,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         dummyController.view.backgroundColor = UIColor.white
         dummyController.navigationItem.title = setting.labelName.rawValue
         navigationController?.navigationBar.tintColor = UIColor.white
-        //UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor.rawValue: UIColor.orange]
         navigationController?.pushViewController(dummyController, animated: true)
     }
     
@@ -140,7 +132,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let identifier:String
+        if (indexPath.item == 1){
+            identifier = trendingCellId
+        } else if (indexPath.item == 2) {
+            identifier = subscriptionCellId
+        } else { identifier = cellId }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         return cell
     }
     

@@ -59,7 +59,6 @@ class VideoCell: BaseCell {
     
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
-        //imageView.image = UIImage(named: "selena=gomez-backgroundImage")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView

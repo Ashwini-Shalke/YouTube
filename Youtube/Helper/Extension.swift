@@ -21,7 +21,6 @@ extension UIView {
             item.translatesAutoresizingMaskIntoConstraints = false
             let key = "v\(index)"
             viewDict[key] = item
-            
         }
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: [], metrics: nil, views: viewDict))
        
