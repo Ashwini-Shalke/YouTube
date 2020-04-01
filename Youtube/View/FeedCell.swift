@@ -59,4 +59,9 @@ class FeedCell : BaseCell, UICollectionViewDelegate, UICollectionViewDataSource,
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let videolaunher = VideoLauncher()
+        videolaunher.showVideoPlayer()
+    }
+    
 }
