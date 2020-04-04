@@ -11,7 +11,6 @@ import UIKit
 class Setting: NSObject {
     let labelName: SettingName
     let imageName: String
-    
     init(labelName: SettingName, imageName: String){
         self.labelName = labelName
         self.imageName = imageName
@@ -20,13 +19,10 @@ class Setting: NSObject {
 
 
 class SettingLauncher:NSObject,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
     let blackView = UIView()
     let cellID = "cellID"
     let cellHeight: CGFloat = 50
     var homeController:HomeController?
-    
-    
     
     var settings: [Setting] = {
         let setting = Setting(labelName: .Setting , imageName: "settings")
